@@ -1,22 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FunctionalComponent } from './components/FunctionalComponent';
-import { ClassComponent } from './components/ClassComponent';
-
-export const ThemeContext = React.createContext();
+import { ThemeProvider } from './components/ThemeProvider';
 
 export const Main = () => {
-  const [themeDark, setThemeDark] = useState(true);
-  console.log(themeDark);
-  const onButtonClick = () => {
-    setThemeDark(!themeDark);
-  };
   return (
-    <ThemeContext.Provider value={themeDark}>
-      <button type="submit" onClick={() => onButtonClick()}>
-        Toogle Theme
-      </button>
+    <ThemeProvider>
       <FunctionalComponent />
-      <ClassComponent />
-    </ThemeContext.Provider>
+    </ThemeProvider>
   );
 };

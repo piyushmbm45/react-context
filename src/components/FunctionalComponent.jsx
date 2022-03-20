@@ -1,17 +1,20 @@
-import React, { useContext } from 'react';
-import { ThemeContext } from '../Main';
+import React from 'react';
+import { useThemeContext, useThemeToogler } from './ThemeProvider';
 
 export const FunctionalComponent = () => {
-  const theme = useContext(ThemeContext);
-  console.log(theme);
-  function themeStyle(dark) {
-    return {
-      backgroundColor: !dark ? 'red' : 'yellowgreen',
-      color: !dark ? 'white' : 'black',
-      margin: '40px',
-      padding: '50px',
-      borderRadius: !dark ? '10px' : '20px',
-    };
-  }
-  return <div style={themeStyle(theme)}>Functional Component</div>;
+  const dark = useThemeContext();
+  const toogle = useThemeToogler();
+  const themeStyle = {
+    backgroundColor: !dark ? 'red' : 'yellowgreen',
+    color: !dark ? 'white' : 'black',
+    margin: '40px',
+    padding: '50px',
+    borderRadius: !dark ? '10px' : '20px',
+  };
+  return (
+    <>
+      <button onClick={toogle}>Toogle Theme</button>
+      <div style={themeStyle}>Functional Component Is</div>
+    </>
+  );
 };
